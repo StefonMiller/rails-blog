@@ -5,5 +5,5 @@ Rails.application.routes.draw do
 
 	# Includes all necessary routes for articles controller, can
 	# exclude routes by using only: [:what_to_keep]
-	resources :articles, only: [:show, :index, :new, :create, :edit, :update]
+	resources :articles
 end
