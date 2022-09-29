@@ -1,8 +1,10 @@
 class ArticlesController < ApplicationController
+	# Execute private method set_article before executing any of the following
+	# public methods defined in only: []
+	before_action :set_article, only:[:show, :edit, :update, :destroy]
+
 
 	def show
-		@id = params[:id]
-		@article = Article.find(@id)
 	end
 	
 	def index
@@ -15,12 +17,11 @@ class ArticlesController < ApplicationController
 
 	# Edit by default sends form responses to #update action
 	def edit
-		@article = Article.find(params[:id])
 	end
 
 	def create
 		# Require article object form params, and permit title and description from this variable
-		@article = Article.new(params.require(:article).permit(:title, :description))
+		@article = Article.new(whitelist)
 		if @article.save
 			# Create flash object so we can display it in view. Need to embed it in
 			# application.html.erb first
@@ -37,8 +38,7 @@ class ArticlesController < ApplicationController
 	end
 
 	def update
-		@article = Article.find(params[:id])
-		if @article.update(params.require(:article).permit(:title, :description))
+		if @article.update(whitelist)
 			flash[:notice] = "Article updated successfully"
 			redirect_to article_path(@article)
 		else
@@ -47,9 +47,20 @@ class ArticlesController < ApplicationController
 	end
 
 	def destroy
-		@article = Article.find(params[:id])
 		@article.destroy
 		redirect_to articles_path
+	end
+
+	# Methods defined below private are only available within their respective
+	# controller
+	private
+	
+	def set_article
+		@article = Article.find(params[:id])
+	end
+
+	def whitelist
+		params.require(:article).permit(:title, :description)
 	end
 
 end
