@@ -13,6 +13,11 @@ class ArticlesController < ApplicationController
 		@article = Article.new
 	end
 
+	# Edit by default sends form responses to #update action
+	def edit
+		@article = Article.find(params[:id])
+	end
+
 	def create
 		# Require article object form params, and permit title and description from this variable
 		@article = Article.new(params.require(:article).permit(:title, :description))
@@ -28,6 +33,16 @@ class ArticlesController < ApplicationController
 			# Update for Rails 7, redirect to new page but now we have an article object
 			# with errors attributes to print out
 			render 'new', status: :unprocessable_entity
+		end
+	end
+
+	def update
+		@article = Article.find(params[:id])
+		if @article.update(params.require(:article).permit(:title, :description))
+			flash[:notice] = "Article updated successfully"
+			redirect_to article_path(@article)
+		else
+			render 'edit', status: :unprocessable_entity
 		end
 	end
 
