@@ -7,6 +7,9 @@ class ArticlesController < ApplicationController
 	def show
 	end
 	
+	def home
+	end
+
 	def index
 		@articles = Article.all
 	end
