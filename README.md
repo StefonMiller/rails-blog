@@ -1,6 +1,6 @@
-# Ruby on Rails Tutorial
+# Rails Blog
 
-First project of https://www.udemy.com/course/the-complete-ruby-on-rails-developer-course using a simple blog application. Users can create articles with subjects and bodies. 
+First project of https://www.udemy.com/course/the-complete-ruby-on-rails-developer-course using a simple blog application. Users can create articles with subjects and bodies which can then be edited or deleted. 
 
 # This tutorial covered the following concepts:
 
