@@ -34,8 +34,12 @@
 	font-size: 8em !important;
 }
 
-hr {
+.navbar {
 	border-bottom: 1px solid white !important;
+}
+
+.footer {
+	border-top: 1px solid white !important;
 }
 
 .jumbotron {
@@ -45,4 +49,8 @@ hr {
 	background-size: cover;
 	height: 600px;
 	width: 1920px;
+}
+
+body {
+	padding-top: 3% !important;
 }
