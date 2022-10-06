@@ -1,26 +1,26 @@
-<h1>All articles:</h1>
-<table>
-	<thead>
-		<tr>
-			<th>Title</th>
-			<th>Description</th>
-			<th>Actions</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @articles.each do |article|%>
-			<tr>
-				<td><%=article.title=%></td>
-				<td><%=article.description=%></td>
-				<td>
-					<%= link_to "Show", article_path(article), method: :get%>
-					<%= link_to "Edit", edit_article_path(article), method: :get%>
-					<%= button_to "Delete", article_path(article), method: :delete, form: {data: {turbo_confirm: "Are you sure?"}}%>
-				</td>
-			<tr>
-		<%end%>
-	</tbody>
-</table>
-
-<%= button_to "Create article", new_article_path, method: :get%>
+<div class="container text-center">
+	<h1 class="mt-4 text-light display-1">All articles:</h1>
+	<% @articles.each do |article|%>
+		<div class="card w-100 text-light shadow">
+			<div class="card-body">
+				<div class="card-header">
+					<h5 class="card-title display-6"><%= link_to article.title, article_path(article), class: "article-link text-decoration-none"%></h5>
+					<p class="fst-italic">Created by Stefon Miller</p>
+				</div>
+				<p class="card-text">Description: <%=truncate(article.description, length: 250)=%></p>
+				<div class="btn-group">
+					<%= button_to "View", article_path(article), method: :get, class: "btn btn-outline-primary"%>
+					<%= button_to "Edit", edit_article_path(article), method: :get, class: "btn btn-outline-primary"%>
+					<%= button_to "Delete", article_path(article), method: :delete, form: {data: {turbo_confirm: "Are you sure?"}}, class: "btn btn-outline-primary"%>
+				</div>
+				<div class="card-footer text-muted">
+					<small>Created <%= time_ago_in_words(article.created_at) %> ago, last updated <%= time_ago_in_words(article.updated_at) %> ago</small>
+				</div>
+			</div>
+		</div>
+	<%end%>
+	
+	<%= button_to "Create article", new_article_path, method: :get, class: "btn btn-outline-primary create-button"%>
+</div>
+	
 
