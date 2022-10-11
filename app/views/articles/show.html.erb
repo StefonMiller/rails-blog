@@ -3,7 +3,7 @@
 	<div class="card w-100 text-light shadow">
 		<div class="card-body">
 			<div class="card-header">
-				<p class="fst-italic text-center">Created by Stefon Miller</p>
+				<p class="fst-italic text-center">Created by <%= @article.user.username %></p>
 			</div>
 			<div class="card-text text-left"><%=truncate(simple_format(@article.description), length: 250)=%></div>
 			<div class="btn-group d-flex justify-content-center">

@@ -5,7 +5,7 @@
 			<div class="card-body">
 				<div class="card-header">
 					<h5 class="card-title display-6"><%= link_to article.title, article_path(article), class: "article-link text-decoration-none"%></h5>
-					<p class="fst-italic">Created by Stefon Miller</p>
+					<p class="fst-italic">Created by <%= article.user.username %></p>
 				</div>
 				<p class="card-text">Description: <%=truncate(article.description, length: 250)=%></p>
 				<div class="btn-group">
