@@ -1,4 +1,5 @@
 class Article < ApplicationRecord
+	belongs_to :user
 	# Enforce non-null titles and descriptions, and specify
 	# min/max lengths for these attributes
 	validates :title, presence: true, length: {minimum: 4, maximum: 30}

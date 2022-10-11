@@ -25,6 +25,7 @@ class ArticlesController < ApplicationController
 	def create
 		# Require article object form params, and permit title and description from this variable
 		@article = Article.new(whitelist)
+		@article.user = User.first
 		if @article.save
 			# Create flash object so we can display it in view. Need to embed it in
 			# application.html.erb first
