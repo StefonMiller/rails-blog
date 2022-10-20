@@ -3,7 +3,7 @@
 		<div class="card-body">
 			<div class="card-header">
 				<h5 class="card-title display-6"><%= link_to article.title, article_path(article), class: "article-link text-decoration-none"%></h5>
-				<p class="fst-italic">Created by <%= article.user.username %></p>
+				<%= link_to "Created by #{article.user.username}", user_path(article.user), class: "fst-italic text-light"%>
 			</div>
 			<p class="card-text">Description: <%=truncate(article.description, length: 250)=%></p>
 			<div class="btn-group">
