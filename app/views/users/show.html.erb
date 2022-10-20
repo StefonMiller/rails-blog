@@ -1,0 +1,11 @@
+<div class="container">
+	<h1 class="mt-4 text-light display-1 text-center"><%= @user.username %>'s profile</h1>
+	<%= gravatar_for @user, size: 400%>
+	<h3 class="mt-4 text-light display-6 text-center">Articles published by <%= @user.username %>:</h1>
+	<div class="container text-center">
+		<%= render 'articles/article' %>
+	</div>
+</div>
+
+
+

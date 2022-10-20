@@ -1,0 +1,19 @@
+<% @articles.each do |article|%>
+	<div class="card w-100 text-light shadow">
+		<div class="card-body">
+			<div class="card-header">
+				<h5 class="card-title display-6"><%= link_to article.title, article_path(article), class: "article-link text-decoration-none"%></h5>
+				<p class="fst-italic">Created by <%= article.user.username %></p>
+			</div>
+			<p class="card-text">Description: <%=truncate(article.description, length: 250)=%></p>
+			<div class="btn-group">
+				<%= button_to "View", article_path(article), method: :get, class: "btn btn-outline-primary"%>
+				<%= button_to "Edit", edit_article_path(article), method: :get, class: "btn btn-outline-primary"%>
+				<%= button_to "Delete", article_path(article), method: :delete, form: {data: {turbo_confirm: "Are you sure?"}}, class: "btn btn-outline-primary"%>
+			</div>
+			<div class="card-footer text-muted">
+				<small>Created <%= time_ago_in_words(article.created_at) %> ago, last updated <%= time_ago_in_words(article.updated_at) %> ago</small>
+			</div>
+		</div>
+	</div>
+<%end%>
