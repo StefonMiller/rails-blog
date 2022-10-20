@@ -1,6 +1,6 @@
 <div class="container text-light">
 	<h1 class="mt-4 display-1 text-center">Edit article</h1>
-	<%= render "shared/errors"%>
+	<%= render "shared/errors", obj: @article%>
 	<%= render "form"%>
 	<h5 class="card-title display-6 text-center"><%= link_to "Return to articles page", articles_path, class: "return-link text-decoration-none"%></h5>
 </div>

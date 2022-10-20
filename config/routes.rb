@@ -6,4 +6,7 @@ Rails.application.routes.draw do
 	# Includes all necessary routes for articles controller, can
 	# exclude routes by using only: [:what_to_keep]
 	resources :articles
+
+	get "signup", to: "users#new"
+	resources :users, except: [:new]
 end
