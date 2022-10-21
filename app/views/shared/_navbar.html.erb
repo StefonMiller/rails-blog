@@ -34,6 +34,7 @@
 							<ul class="dropdown-menu shadow" aria-labelledby="dropdownMenuLink">
 								<li><%= button_to "View profile", user_path(current_user), class: "drop-log-button"%></li>
 								<li><%= button_to "Edit profile", edit_user_path(current_user), class: "drop-log-button mt-1"%></li>
+								<li><%= button_to "Delete profile", user_path(current_user), method: :delete, class: "drop-log-button mt-1"%></li>
 								<li><%= button_to "Log Out", logout_path, method: :delete, class: "drop-log-button mt-1"%></li>
 							</ul>
 						</div>
