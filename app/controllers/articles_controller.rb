@@ -2,12 +2,14 @@ class ArticlesController < ApplicationController
 	# Execute private method set_article before executing any of the following
 	# public methods defined in only: []
 	before_action :set_article, only:[:show, :edit, :update, :destroy]
-
+	before_action :require_user, except: [:show, :index, :home]
+	before_action :require_same_user, only:[:edit, :update, :destroy]
 
 	def show
 	end
 	
 	def home
+		redirect_to articles_path if logged_in?
 	end
 
 	def index
@@ -25,7 +27,7 @@ class ArticlesController < ApplicationController
 	def create
 		# Require article object form params, and permit title and description from this variable
 		@article = Article.new(whitelist)
-		@article.user = User.first
+		@article.user = current_user
 		if @article.save
 			# Create flash object so we can display it in view. Need to embed it in
 			# application.html.erb first
@@ -66,6 +68,13 @@ class ArticlesController < ApplicationController
 
 	def whitelist
 		params.require(:article).permit(:title, :description)
+	end
+
+	def require_same_user
+		if current_user != @article.user
+			flash[:alert] = "You can only edit/delete article you have created"
+			redirect_to @article
+		end
 	end
 
 end

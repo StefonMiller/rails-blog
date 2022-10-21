@@ -7,6 +7,12 @@ Rails.application.routes.draw do
 	# exclude routes by using only: [:what_to_keep]
 	resources :articles
 
+	# Custom url for users#new action
 	get "signup", to: "users#new"
 	resources :users, except: [:new]
+
+	# Routes for sessions controller for user login/authentication
+	get "login", to: "sessions#new"
+	post "login", to: "sessions#create"
+	delete "logout", to: "sessions#destroy"
 end
