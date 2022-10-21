@@ -1,11 +1,15 @@
-<div class="container">
+<div class="container text-center">
 	<h1 class="mt-4 text-light display-1 text-center"><%= @user.username %>'s profile</h1>
 	<%= gravatar_for @user, size: 400%>
-	<% if logged_in? && current_user == @user%>
-		<div class="text-center mt-4">
-			<%= button_to "Edit profile", edit_user_path(@user), method: :get, class: "btn btn-outline-primary create-button"%>
+	<% if logged_in?%>
+		<div class = "btn-group text-center mt-4">
+			<% if current_user == @user || current_user.admin?%>
+				<%= button_to "Edit profile", edit_user_path(@user), method: :get, class: "btn btn-outline-primary create-button"%>
+				<%= button_to "Delete profile", user_path(@user), method: :delete, class: "btn btn-outline-primary create-button"%>
+			<% end %>
 		</div>
 	<% end %>
+	
 	<h3 class="mt-4 text-light display-6 text-center">Articles published by <%= @user.username %>:</h1>
 	<div class="flickr_pagination mt-4">
 		<%= will_paginate @articles, :container => false %>

@@ -20,7 +20,7 @@
         </ul>
       </div>
     </div>
-		<div>
+		<div class="min-vw-66">
 			<ul class="navbar-nav me-auto mb-2 mb-md-0">
 				<% if logged_in? %>
 					<li class="nav-item">
@@ -29,10 +29,10 @@
 					<li class="nav-item">
 						<div class="dropdown">
 							<a class="btn text-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-								<%= current_user[:username] %>
+								<%= current_user[:username] %> <%= " (Admin)" if current_user.admin?  %>
 							</a>
 							<ul class="dropdown-menu shadow" aria-labelledby="dropdownMenuLink">
-								<li><%= button_to "View profile", user_path(current_user), class: "drop-log-button"%></li>
+								<li><%= button_to "View profile", user_path(current_user), method: :get, class: "drop-log-button"%></li>
 								<li><%= button_to "Edit profile", edit_user_path(current_user), class: "drop-log-button mt-1"%></li>
 								<li><%= button_to "Delete profile", user_path(current_user), method: :delete, class: "drop-log-button mt-1"%></li>
 								<li><%= button_to "Log Out", logout_path, method: :delete, class: "drop-log-button mt-1"%></li>
