@@ -1,7 +1,13 @@
 <div class="container text-center">
 	<h1 class="mt-4 text-light display-1">All articles:</h1>
+	<div class="flickr_pagination">
+		<%= will_paginate @articles, :container => false %>
+	</div>
 	<%= render 'article'%>
 	<%= button_to "Create article", new_article_path, method: :get, class: "btn btn-outline-primary create-button"%>
+	<div class="flickr_pagination mb-4">
+		<%= will_paginate @articles, :container => false %>
+	</div>
 </div>
 	
 

@@ -5,8 +5,14 @@
 		<%= button_to "Edit profile", edit_user_path(@user), method: :get, class: "btn btn-outline-primary create-button"%>
 	</div>
 	<h3 class="mt-4 text-light display-6 text-center">Articles published by <%= @user.username %>:</h1>
+	<div class="flickr_pagination mt-4">
+		<%= will_paginate @articles, :container => false %>
+	</div>
 	<div class="container text-center">
 		<%= render 'articles/article' %>
+	</div>
+	<div class="flickr_pagination mb-4">
+		<%= will_paginate @articles, :container => false %>
 	</div>
 </div>
 
